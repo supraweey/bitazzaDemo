@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.example.bitazzademo'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.bitazzademo"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    // Fundamental
+    implementation "androidx.multidex:multidex:$versions.multidex"
+
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+
+    // Dependency Injection
+    implementation "io.insert-koin:koin-android:$versions.koin"
+    implementation "io.insert-koin:koin-android-ext:$versions.koin"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines_core"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines_android"
+
+    // Utilities
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+    debugImplementation "com.readystatesoftware.chuck:library:$versions.chuck"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$versions.chuck"
+
+    implementation "com.github.hadilq:live-event:1.3.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation("androidx.work:work-runtime:$versions.work_manager_version")
+    implementation("androidx.work:work-runtime-ktx:$versions.work_manager_version")
+
+    // UI
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+
+}
