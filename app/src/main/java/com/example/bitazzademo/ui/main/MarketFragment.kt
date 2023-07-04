@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.FragmentMarketBinding
 
 class MarketFragment : Fragment() {
@@ -16,6 +18,15 @@ class MarketFragment : Fragment() {
     ): View? {
         binding = FragmentMarketBinding.inflate(inflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).apply {
+            setCustomActionBar(requireContext(), title = "Bitazza", menuIcon = R.drawable.ic_logout){
+                // Handle logout
+            }
+        }
     }
 
 }

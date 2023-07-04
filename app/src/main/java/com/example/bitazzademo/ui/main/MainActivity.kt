@@ -3,12 +3,18 @@ package com.example.bitazzademo.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.ActivityMainBinding
+import com.example.bitazzademo.databinding.CustomActionbarLayoutBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -22,12 +28,47 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
 
-    private fun initView(){
+    private fun initView() {
         navController = Navigation.findNavController(this, R.id.navHostFragmentContainer)
         binding.bottomNavigationView.setupWithNavController(navController)
     }
 
-    companion object{
+    fun setCustomActionBar(
+        context: Context,
+        title: String,
+        @DrawableRes menuIcon: Int? = null,
+        onClickMenu: (() -> Unit) = {}
+    ) {
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(false)
+
+        val binding = CustomActionbarLayoutBinding.inflate(layoutInflater)
+        val params = ActionBar.LayoutParams(
+            ActionBar.LayoutParams.MATCH_PARENT,
+            ActionBar.LayoutParams.MATCH_PARENT,
+            Gravity.CENTER
+        )
+
+        binding.tvActionBarTitle.text = title
+
+        menuIcon?.let {
+            binding.imgMenu.apply {
+                visibility = View.VISIBLE
+                setImageDrawable(ContextCompat.getDrawable(context, menuIcon))
+                setOnClickListener {
+                    onClickMenu.invoke()
+                }
+            }
+        }
+
+        actionBar?.setDisplayShowCustomEnabled(true)
+        actionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        actionBar?.setCustomView(binding.root, params)
+
+        supportActionBar?.apply { setDisplayHomeAsUpEnabled(false) }
+    }
+
+    companion object {
         fun startActivity(context: Context) {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
