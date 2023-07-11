@@ -2,6 +2,8 @@ package com.example.bitazzademo.ui.main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -15,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.ActivityMainBinding
 import com.example.bitazzademo.databinding.CustomActionbarLayoutBinding
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     fun setCustomActionBar(
         context: Context,
         title: String,
-        @DrawableRes menuIcon: Int? = null,
+        labelEnd: String?,
         onClickMenu: (() -> Unit) = {}
     ) {
         val actionBar = supportActionBar
@@ -51,10 +54,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvActionBarTitle.text = title
 
-        menuIcon?.let {
-            binding.imgMenu.apply {
+        labelEnd?.let {
+            binding.tvActionBarEnd.apply {
                 visibility = View.VISIBLE
-                setImageDrawable(ContextCompat.getDrawable(context, menuIcon))
+                text = it
                 setOnClickListener {
                     onClickMenu.invoke()
                 }
@@ -64,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         actionBar?.setDisplayShowCustomEnabled(true)
         actionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         actionBar?.setCustomView(binding.root, params)
+        val colorDrawable = ColorDrawable(ContextCompat.getColor(context, R.color.colorBlack191919))
+        actionBar?.setBackgroundDrawable(colorDrawable)
 
         supportActionBar?.apply { setDisplayHomeAsUpEnabled(false) }
     }

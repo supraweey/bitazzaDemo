@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.bitazzademo.databinding.FragmentLoginBinding
 import com.example.bitazzademo.ui.main.MainActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
     private val viewModel by viewModel<LoginViewModel>()
     lateinit var binding: FragmentLoginBinding
 
@@ -24,12 +25,28 @@ class LoginFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnLogin.setOnClickListener {
-            MainActivity.startActivity(requireContext())
+        binding.apply {
+            edtEmail.setText("suprawee.yimnium@gmail.com")
+            edtPassword.setText("superFon@1")
+            btnLogin.setOnClickListener {
+                val username = edtEmail.text.toString()
+                val password = edtPassword.text.toString()
+                viewModel.executeLogin(username, password)
+            }
         }
     }
 
-    private fun onObserve(){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onObserve()
+    }
 
+    private fun onObserve() {
+        viewModel.token.observe(requireActivity()) {
+            MainActivity.startActivity(requireContext())
+        }
+        viewModel.isError.observe(requireActivity()) {
+            Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
+        }
     }
 }

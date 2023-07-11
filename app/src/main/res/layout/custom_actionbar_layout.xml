@@ -19,13 +19,15 @@
         android:textStyle="bold"
         android:textColor="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgMenu"
-        android:layout_width="@dimen/space_40dp"
-        android:layout_height="@dimen/space_40dp"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvActionBarEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
         tools:visibility="visible"
-        tools:ignore="ContentDescription" />
+        android:fontFamily="@font/kanit_regular"
+        android:gravity="end"
+        android:textColor="@color/white"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

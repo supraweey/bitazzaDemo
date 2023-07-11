@@ -23,7 +23,7 @@ class MarketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as MainActivity).apply {
-            setCustomActionBar(requireContext(), title = "Bitazza", menuIcon = R.drawable.ic_logout){
+            setCustomActionBar(requireContext(), title = "Bitazza", labelEnd = "Logout"){
                 // Handle logout
             }
         }

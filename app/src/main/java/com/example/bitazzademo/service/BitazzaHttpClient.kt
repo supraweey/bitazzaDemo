@@ -1,6 +1,9 @@
 package com.example.bitazzademo.service
 
 import android.content.Context
+import android.content.SharedPreferences
+import com.example.bitazzademo.domain.USER_KEY_TOKEN
+import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.google.gson.GsonBuilder
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
@@ -16,16 +19,17 @@ class BitazzaHttpClient {
         val BASE_URL = "https://apexapi.bitazza.com:8443/"
     }
 
-    fun createRetrofit(context: Context): Retrofit {
+    fun createRetrofit(context: Context, pref: PreferenceStoragable): Retrofit {
         val gson = GsonBuilder().setLenient().create()
         return Retrofit.Builder().baseUrl(BASE_URL)
-            .client(createOkHttpClient(context))
+            .client(createOkHttpClient(context, pref))
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
     private fun createOkHttpClient(
         context: Context,
+        pref: PreferenceStoragable,
         interceptors: List<Interceptor> = listOf()
     ): OkHttpClient {
         val bodyLogging = HttpLoggingInterceptor().apply {
@@ -39,9 +43,11 @@ class BitazzaHttpClient {
         interceptors.forEach { client.addInterceptor(it) }
 
         if (BuildConfig.DEBUG) {
+            client.addInterceptor(BasicAuthInterceptor(pref.getString(USER_KEY_TOKEN, "") ?: ""))
             client.addNetworkInterceptor(bodyLogging)
             client.addInterceptor(ChuckInterceptor(context))
         }
         return client.build()
     }
+
 }
