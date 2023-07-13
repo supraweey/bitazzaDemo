@@ -2,7 +2,7 @@ package com.example.bitazzademo.domain
 
 import kotlinx.coroutines.flow.Flow
 
-class LoginUseCase(private val repository: AuthenticationRepository) :
+class LoginUseCase(private val repository: BitazzaRepository) :
     UseCase<String, AuthenticationItem>() {
     override fun validateRequest(request: String): String = request
 

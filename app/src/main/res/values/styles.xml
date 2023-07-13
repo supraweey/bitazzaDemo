@@ -30,9 +30,9 @@
     </style>
 
     <style name="ThemeOverlay.BottomNavView" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/colorGreen2fbc86</item>
-        <item name="colorOnSurface">@color/colorBlack4c4c4c</item>
-        <item name="android:textColorSecondary">@color/colorBlack4c4c4c</item>
+        <item name="colorPrimary">@color/colorGreen2FBC86</item>
+        <item name="colorOnSurface">@color/colorBlack4C4C4C</item>
+        <item name="android:textColorSecondary">@color/colorBlack4C4C4C</item>
     </style>
 
     <style name="KanitTextViewStyleGray" parent="Widget.AppCompat.TextView">

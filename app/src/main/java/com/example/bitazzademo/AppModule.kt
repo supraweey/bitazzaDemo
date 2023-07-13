@@ -2,9 +2,10 @@ package com.example.bitazzademo
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.bitazzademo.data.AuthenticationRepositoryImpl
-import com.example.bitazzademo.data.AuthenticationService
-import com.example.bitazzademo.domain.AuthenticationRepository
+import com.example.bitazzademo.data.BitazzaRepositoryImpl
+import com.example.bitazzademo.data.BitazzaService
+import com.example.bitazzademo.domain.BitazzaRepository
+import com.example.bitazzademo.domain.GetProductListUseCase
 import com.example.bitazzademo.domain.LoginUseCase
 import com.example.bitazzademo.domain.SHARED_PREFERENCES_NAME
 import com.example.bitazzademo.domain.manager.AppKeyable
@@ -17,6 +18,7 @@ import com.example.bitazzademo.network.NetworkManager
 import com.example.bitazzademo.network.Networkable
 import com.example.bitazzademo.service.BitazzaHttpClient
 import com.example.bitazzademo.ui.account.LoginViewModel
+import com.example.bitazzademo.ui.main.market.MarketViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -46,10 +48,12 @@ val appModule = module {
         BitazzaHttpClient().createRetrofit(context = androidContext(), get())
     }
 
-    single { get<Retrofit>(named("RETROFIT")).create(AuthenticationService::class.java) }
-    single<AuthenticationRepository> { AuthenticationRepositoryImpl(get(), get()) }
+    single { get<Retrofit>(named("RETROFIT")).create(BitazzaService::class.java) }
+    single<BitazzaRepository> { BitazzaRepositoryImpl(get(), get()) }
 
     factory { LoginUseCase(get()) }
+    factory { GetProductListUseCase(get()) }
 
     viewModel { LoginViewModel(get()) }
+    viewModel { MarketViewModel(get(), get()) }
 }

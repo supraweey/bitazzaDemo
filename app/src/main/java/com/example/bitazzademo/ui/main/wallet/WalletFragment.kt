@@ -1,4 +1,4 @@
-package com.example.bitazzademo.ui.main
+package com.example.bitazzademo.ui.main.wallet
 
 import android.os.Bundle
 import android.view.LayoutInflater

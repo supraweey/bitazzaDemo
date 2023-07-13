@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.bitazzademo.databinding.FragmentLoginBinding
+import com.example.bitazzademo.domain.OMSID
 import com.example.bitazzademo.domain.USER_KEY_TOKEN
 import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.example.bitazzademo.ui.main.MainActivity
+import org.bouncycastle.util.Integers
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,8 +52,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun onObserve() {
-        viewModel.token.observe(requireActivity()) {
-            prefs.putString(USER_KEY_TOKEN, it)
+        viewModel.userData.observe(requireActivity()) {
+            prefs.putString(USER_KEY_TOKEN, it.token ?: "")
+            prefs.putInt(OMSID, it.oMSId ?: 0)
             MainActivity.startActivity(requireContext())
         }
         viewModel.isError.observe(requireActivity()) {

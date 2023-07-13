@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/marketFragment"
-        android:name="com.example.bitazzademo.ui.main.MarketFragment"
+        android:name="com.example.bitazzademo.ui.main.market.MarketFragment"
         android:label="fragment_market"
         tools:layout="@layout/fragment_market" />
 
     <fragment
         android:id="@+id/walletFragment"
-        android:name="com.example.bitazzademo.ui.main.WalletFragment"
+        android:name="com.example.bitazzademo.ui.main.wallet.WalletFragment"
         android:label="WalletFragment"
         tools:layout="@layout/fragment_wallet"/>
 

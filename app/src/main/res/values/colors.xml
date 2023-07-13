@@ -13,8 +13,9 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="colorGrayCCCCCC">#cccccc</color>
-    <color name="colorBlack4c4c4c">#4c4c4c</color>
+    <color name="colorBlack4C4C4C">#4c4c4c</color>
     <color name="colorBlack323232">#323232</color>
     <color name="colorBlack191919">#191919</color>
-    <color name="colorGreen2fbc86">#2fbc86</color>
+    <color name="colorGreen2FBC86">#2fbc86</color>
+    <color name="colorRedD22B2B">#D22B2B</color>
 </resources>

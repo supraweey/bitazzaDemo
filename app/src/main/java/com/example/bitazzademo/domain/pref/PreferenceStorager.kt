@@ -16,6 +16,16 @@ class PreferenceStorager constructor(
         put(key, value)
     }
 
+    override fun getInt(key: String, defaultValue: Int): Int = get(key)?.toIntOrNull() ?: defaultValue
+
+    override fun putInt(key: String, value: Int) {
+        put(key, value)
+    }
+
+    override fun delete(key: String) {
+        prefs.edit().remove(key).apply()
+    }
+
     private fun get(key: String): String? {
         return try {
             val encryptedPref = prefs.getString(key, null)

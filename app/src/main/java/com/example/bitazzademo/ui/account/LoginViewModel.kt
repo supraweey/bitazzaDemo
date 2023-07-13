@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 import org.bouncycastle.util.encoders.Base64
 
 class LoginViewModel(private val loginUseCase: LoginUseCase): ViewModel() {
-    private val _token = LiveEvent<String>()
-    val token: LiveData<String>
-        get() = _token
+    private val _userData = LiveEvent<AuthenticationItem>()
+    val userData: LiveData<AuthenticationItem>
+        get() = _userData
 
     private val _isError = LiveEvent<Boolean>()
     val isError: LiveData<Boolean>
@@ -34,9 +34,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase): ViewModel() {
     }
 
     private fun onGetToken(item: AuthenticationItem){
-        item.token?.let {
-            _token.value = it
-        }
+        _userData.value = item
 
     }
 }

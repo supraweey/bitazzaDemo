@@ -70,7 +70,7 @@
         style="@style/KanitTextViewStyleWhite"
         android:layout_width="@dimen/space_00dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorGreen2fbc86"
+        android:background="@color/colorGreen2FBC86"
         android:gravity="center"
         android:text="@string/label_button_login"
         android:layout_marginTop="@dimen/space_20dp"
