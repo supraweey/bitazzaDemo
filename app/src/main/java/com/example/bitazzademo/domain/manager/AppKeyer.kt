@@ -1,26 +1,23 @@
 package com.example.bitazzademo.domain.manager
 
-import android.content.Context
+import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
 
-class AppKeyer constructor(private val context: Context): AppKeyable {
 
-    private var getJniKeyCounter = 0
-    private external fun getJNIKey(type: Int): String
+class AppKeyer : AppKeyable {
+    override val aesKey: SecretKey?
+        get() = getKey()
 
-    override val aesKey: String
-        get() = getJNIKeySafety(JNI_KEY_AES_KEY_TYPE)
-
-    private fun getJNIKeySafety(type: Int): String {
-        getJniKeyCounter++
-        return try {
-            getJNIKey(type = type)
+    private fun getKey(): SecretKey? {
+        var secretKey: SecretKey? = null
+        try {
+            val keyGenerator = KeyGenerator.getInstance("AES")
+            keyGenerator.init(256)
+            secretKey = keyGenerator.generateKey()
         } catch (e: Exception) {
-            getJniKeyCounter = 0
-            throw e
+            e.printStackTrace()
         }
+        return secretKey
     }
 
-    companion object{
-        private const val JNI_KEY_AES_KEY_TYPE = 0
-    }
 }

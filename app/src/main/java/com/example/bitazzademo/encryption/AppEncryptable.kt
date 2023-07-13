@@ -1,7 +1,9 @@
 package com.example.bitazzademo.encryption
 
-interface AppEncryptable {
-    fun encryptAES(plainData: String, encryptionKey: String): String
+import javax.crypto.SecretKey
 
-    fun decryptAES(encryptData: String, encryptionKey: String): String
+interface AppEncryptable {
+    fun encryptAES(plainData: String, encryptionKey: SecretKey?): String
+
+    fun decryptAES(encryptData: String, encryptionKey: SecretKey?): String
 }

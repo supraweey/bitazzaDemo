@@ -31,7 +31,7 @@ val appModule = module {
             Context.MODE_PRIVATE
         )
     }
-    single<AppKeyable> { AppKeyer(androidContext()) }
+    single<AppKeyable> { AppKeyer() }
     single<AppEncryptable> { AppEncrypter() }
     single<PreferenceStoragable> {
         PreferenceStorager(

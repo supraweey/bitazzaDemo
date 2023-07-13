@@ -18,8 +18,7 @@ class PreferenceStorager constructor(
 
     private fun get(key: String): String? {
         return try {
-            val encryptedKey = encryptable.encryptAES(key, keyable.aesKey)
-            val encryptedPref = prefs.getString(encryptedKey, null)
+            val encryptedPref = prefs.getString(key, null)
             encryptedPref?.let {
                 encryptable.decryptAES(encryptedPref, keyable.aesKey)
             }
@@ -30,13 +29,12 @@ class PreferenceStorager constructor(
 
     private fun <T> put(key: String, value: T?) {
         try {
-            val encryptedKey = encryptable.encryptAES(key, keyable.aesKey)
             var encryptedData: String? = null
             value?.let {
                 encryptedData = encryptable.encryptAES(value.toString(), keyable.aesKey)
             }
 
-            prefs.edit().putString(encryptedKey, encryptedData).apply()
+            prefs.edit().putString(key, encryptedData).apply()
 
         } catch (e: Exception) {
             Timber.e(e, "ERROR ~> : ${e.message}")

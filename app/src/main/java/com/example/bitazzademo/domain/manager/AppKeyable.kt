@@ -1,5 +1,7 @@
 package com.example.bitazzademo.domain.manager
 
+import javax.crypto.SecretKey
+
 interface AppKeyable {
-    val aesKey: String
+    val aesKey: SecretKey?
 }
