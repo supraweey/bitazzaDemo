@@ -8,7 +8,7 @@ sealed class MarketListViewType {
         @StringRes val volume: Int,
         @StringRes val price: Int,
         @StringRes val change: Int
-    ): MarketListViewType()
+    ) : MarketListViewType()
 
     data class Item(
         val omsId: Int? = null,
@@ -24,5 +24,5 @@ sealed class MarketListViewType {
         val noFees: Boolean? = null,
         val isDisabled: Boolean? = null,
         val marginEnabled: Boolean? = null
-    ): MarketListViewType()
+    ) : MarketListViewType()
 }

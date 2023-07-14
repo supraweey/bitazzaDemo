@@ -1,5 +1,8 @@
+@file:OptIn(FlowPreview::class)
+
 package com.example.bitazzademo.domain
 
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow

@@ -10,23 +10,22 @@ import com.example.bitazzademo.ui.main.market.holder.MarketItemViewHolder
 import com.example.bitazzademo.ui.main.market.holder.MarketListViewType
 
 class MarketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var onItemClicked: (productItem: MarketListViewType.Item) -> Unit = {}
     private var productList = mutableListOf<MarketListViewType>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holder: RecyclerView.ViewHolder = when (viewType) {
-            VIEW_TYPE_HEADER -> {
-                val view = ItemHeaderMarketBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
-                )
-                MarketHeaderViewHolder(view)
-            }
-
-            else -> {
+            VIEW_TYPE_ITEM -> {
                 val view = ItemMarketBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
                 MarketItemViewHolder(view)
+            }
+
+            else -> {
+                val view = ItemHeaderMarketBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+                MarketHeaderViewHolder(view)
             }
         }
         return holder
@@ -46,14 +45,19 @@ class MarketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    override fun getItemViewType(position: Int): Int = when (productList[position]) {
+        is MarketListViewType.Item -> VIEW_TYPE_ITEM
+        is MarketListViewType.Header -> VIEW_TYPE_HEADER
+    }
+
     fun updateItem(products: List<MarketListViewType>) = apply {
         productList = products.toMutableList()
         notifyDataSetChanged()
     }
 
     companion object {
-        const val VIEW_TYPE_HEADER = 1
-        const val VIEW_TYPE_ITEM = 2
+        const val VIEW_TYPE_ITEM = 1
+        const val VIEW_TYPE_HEADER = 2
     }
 
 }

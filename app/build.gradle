@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.example.bitazzademo'
-    compileSdk 32
+    compileSdk versions.compileSdk
 
     defaultConfig {
         applicationId "com.example.bitazzademo"
-        minSdk 23
-        targetSdk 31
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -38,16 +38,16 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.extJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 
     // Fundamental
     implementation "androidx.multidex:multidex:$versions.multidex"
@@ -80,14 +80,13 @@ dependencies {
     debugImplementation "com.readystatesoftware.chuck:library:$versions.chuck"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:$versions.chuck"
 
-    implementation "com.github.hadilq:live-event:1.3.0"
+    implementation "com.github.hadilq:live-event:$versions.live_event"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation("androidx.work:work-runtime:$versions.work_manager_version")
     implementation("androidx.work:work-runtime-ktx:$versions.work_manager_version")
 
     // UI
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
-
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
     api "org.bouncycastle:bcprov-jdk15on:$versions.bouncycastle"
 
 }

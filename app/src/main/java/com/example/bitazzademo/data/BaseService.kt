@@ -2,12 +2,12 @@ package com.example.bitazzademo.data
 
 import android.content.Context
 import com.example.bitazzademo.domain.APP_COMMON_ERROR
-import com.example.bitazzademo.domain.FAIL_TO_DECRYPT_ERROR_CODE
+import com.example.bitazzademo.domain.manager.FAIL_TO_DECRYPT_ERROR_CODE
 import com.example.bitazzademo.domain.NO_INTERNET_CONNECTION
 import com.example.bitazzademo.domain.SOCKET_TIMEOUT
 import com.example.bitazzademo.domain.TIMEOUT
 import com.example.bitazzademo.domain.UNKNOWN_HOST
-import com.example.bitazzademo.domain.handleHttpError
+import com.example.bitazzademo.domain.manager.handleHttpError
 import com.example.bitazzademo.network.Networkable
 import com.example.bitazzademo.service.ServiceException
 import kotlinx.coroutines.flow.Flow
@@ -73,9 +73,5 @@ abstract class BaseService<R, M> constructor(private val networkable: Networkabl
             FAIL_TO_DECRYPT_ERROR_CODE -> throw ServiceException(FAIL_TO_DECRYPT_ERROR_CODE)
             else -> throw ServiceException(APP_COMMON_ERROR, message)
         }
-    }
-
-    companion object {
-        private val SUCCESS_CODE = arrayListOf("0000")
     }
 }

@@ -2,154 +2,51 @@
 buildscript {
     ext.versions = [
             // SDK
-            compileSdk               : 31,
-            buildTools               : '31.0.0',
-            minSdk                   : 23,
-            targetSdk                : 31,
+            compileSdk          : 32,
+            minSdk              : 23,
+            targetSdk           : 31,
 
             // Fundamental
-            jetbrains                : '16.0.1',
-            kotlin                   : '1.3.70',
-            anko                     : '0.10.8',
-            coroutines_core          : '1.3.9',
-            coroutines_android       : '1.3.9',
-            coroutines_test          : '1.3.9',
+            kotlin              : '1.3.70',
+            coroutines_core     : '1.3.9',
+            coroutines_android  : '1.3.9',
 
             // Android X
-            appcompat                : '1.2.0',
-            core_ktx                 : '1.3.1',
-            multidex                 : '2.0.1',
-            support                  : '1.0.0',
-            constraintlayout         : '2.0.4',
-            webkit                   : '1.2.0',
-            exifinterface            : '1.2.0',
-            media                    : '1.1.0',
+            appcompat           : '1.5.1',
+            multidex            : '2.0.1',
+            constraintlayout    : '2.1.4',
+            core_ktx            : '1.7.0',
+            live_event          : '1.3.0',
 
             // UI
-            material                 : '1.2.0',
-            pageindicatorview        : '1.0.3',
-            circular_progress        : '1.3.2',
-            keyboard_visibility_event: '2.1.0',
-            circleimageview          : '3.0.0',
-            calendarview             : '3.6.7',
-            balloon                  : '1.1.5',
-            scrollingpagerindicator  : '1.2.1',
-            shadowView               : '0.0.4-beta3',
-            pdf_viewer               : '2.8.2',
-            view_pager2              : '1.0.0',
-
-            // Google
-            google_play              : '17.0.2',
-            google_play_location     : '17.0.0',
-            google_analytic          : '16.0.8',
-            guava                    : '28.1-android',
-            google_play_map          : '17.0.0',
-
-            // Firebase
-            firebase_core            : '16.0.9',
-            firebase_messaging       : '18.0.0',
-            firebase_dynamic_links   : '21.0.0',
-
-            // Analytics
-            firebase_crashlytics     : '17.2.2',
-            firebase_analytics       : '18.0.0',
+            material            : '1.7.0',
 
             // Jetpack
-            arch                     : '2.1.0',
-            livedata_ktx             : '2.2.0',
-            navigation               : '2.3.0',
-            work_manager             : '1.0.1',
+            navigation          : '2.5.3',
 
             // Image
-            glide                    : '4.11.0',
-
-            // ReactiveX
-            rx_android               : '2.1.1',
-            rx_java                  : '2.2.9',
-            rx_kotlin                : '2.3.0',
-            rx_lifecycle             : '2.2.2',
-            rx_binding               : '2.1.1',
-
-            // Permission
-            permissions_dispatcher   : '3.3.1',
-            dexter                   : '6.0.2',
+            glide               : '4.14.2',
 
             // Dependency Injection
-            koin                     : '3.0.2',
+            koin                : '3.0.2',
 
             // Network
-            retrofit                 : '2.6.0',
-            // okhttp 3.12.x for minSDK lower than 21
-            okhttp                   : '3.12.1',
-            simplexml                : '2.3.0',
-
-            // Barcode
-            zxing                    : '3.4.0',
-            barcodescanner           : '1.9.13',
-            zxing_journeyapps        : '4.3.0',
-
-            // Face SDK
-            tencent_face_sdk         : '1.2.7',
+            retrofit            : '2.6.0',
+            okhttp              : '3.12.1',
 
             // Utilities
-            timber                   : '4.7.1',
-            bouncycastle             : '1.64',
-            gson                     : '2.8.4',
-            moshi                    : '1.9.2',
-            gravitysnaphelper        : '1.5',
-            joda_time                : '2.10.5',
-            rootbeer                 : '0.0.7',
-            chuck                    : '1.1.0',
-            jwt                      : '0.7.0',
+            timber              : '4.7.1',
+            gson                : '2.8.4',
+            bouncycastle        : '1.64',
+            chuck               : '1.1.0',
 
-            // V-Key
-            securefileio             : '4.7.7',
-            vos_app_protection       : '4.8.6',
-            vos_processor            : '4.8.4',
-
-            gloflutter               : '5.0.18-prod',
-
-            // Number Picker
-            number_picker            : '2.4.8',
-
-            // Unit Test
-            junit                    : '4.13',
-            testRules                : '1.1.1',
-            testRunner               : '1.2.0',
-            junit_params             : '1.1.1',
-            mockito                  : '4.0.0',
-            mockito_all              : '1.10.19',
-            mockito_android          : '4.0.0',
-            mockito_kotlin           : '4.0.0',
-
-            // UI Test
-            espresso                 : '3.2.0',
-            extJunit                 : '1.1.1',
-            robolectric              : '3.8',
-            robolectric4             : '4.5',
-            uiautomator              : '2.2.0',
-            orchestrator             : '1.1.0',
-            powermock                : '2.0.0-beta.5',
-            findbugs                 : '3.0.2',
-
-            // Huawei
-            huawei_location          : '5.0.4.300',
-            huawei_id                : '3.0.0.302',
-            huawei_scan              : '1.2.0.301',
-            huawei_analytics         : '5.0.1.301',
-            huawei_crash             : '1.4.0.300',
-            huawei_push              : '5.3.0.304',
-            huawei_map               : '5.0.1.300',
-            huawei_vision            : '2.0.1.300',
-            huawei_applinking        : '1.4.1.300',
+            // Unit, UI Test
+            junit               : '4.13.2',
+            extJunit            : '1.1.4',
+            espresso            : '3.5.0',
 
             //WorkManager
-            work_manager_version     : '2.7.1',
-            image_cropper            : '2.8.0',
-            pi_chart                 : '3.1.0',
-
-            //WorkManager
-            dynatrace_agent          : '8.211.1.1010',
+            work_manager_version: '2.7.1',
     ]
 
     repositories {

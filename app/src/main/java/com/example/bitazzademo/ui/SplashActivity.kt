@@ -1,9 +1,7 @@
 package com.example.bitazzademo.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.bitazzademo.R
-import com.example.bitazzademo.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.bitazzademo.databinding.ActivitySplashBinding
 import com.example.bitazzademo.domain.USER_KEY_TOKEN
 import com.example.bitazzademo.domain.pref.PreferenceStoragable

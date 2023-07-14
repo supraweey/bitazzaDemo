@@ -1,20 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.market.MarketFragment"
-    android:background="#80DEEF">
+    android:background="@color/colorBlack191919"
+    tools:context=".ui.main.market.MarketFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/containerWallet"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/menu_wallet"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/space_16dp"
+        android:paddingBottom="@dimen/space_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/space_05dp"
+            android:paddingVertical="@dimen/space_05dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTapFiat"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_34dp"
+                android:background="@color/colorBlack4C4C4C"
+                android:fontFamily="@font/kanit_regular"
+                android:gravity="center"
+                android:paddingVertical="@dimen/space_05dp"
+                android:text="@string/wallet_title_fiat"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTapCrypto"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_34dp"
+                android:background="@color/colorBlack323232"
+                android:fontFamily="@font/kanit_regular"
+                android:gravity="center"
+                android:paddingVertical="@dimen/space_05dp"
+                android:text="@string/wallet_title_crypto"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpWallet"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerWallet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

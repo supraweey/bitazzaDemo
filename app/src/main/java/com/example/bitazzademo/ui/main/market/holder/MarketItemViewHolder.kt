@@ -16,7 +16,7 @@ class MarketItemViewHolder(var view: ItemMarketBinding) : RecyclerView.ViewHolde
                 tvPrice2.text = item.decimalPlaces.toString()
                 imgPercent.apply {
                     text = resources.getString(R.string.market_mock_value_change)
-                    background = if (item.marginEnabled == true) ContextCompat.getDrawable(
+                    background = if (item.marginEnabled == false) ContextCompat.getDrawable(
                         context,
                         R.drawable.bg_rectangle_radius_green
                     ) else ContextCompat.getDrawable(context, R.drawable.bg_rectangle_radius_red)

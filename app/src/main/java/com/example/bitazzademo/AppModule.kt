@@ -45,7 +45,7 @@ val appModule = module {
 
     single<Networkable> { NetworkManager.init(get()) }
     single(named("RETROFIT")) {
-        BitazzaHttpClient().createRetrofit(context = androidContext(), get())
+        BitazzaHttpClient().createRetrofit(get())
     }
 
     single { get<Retrofit>(named("RETROFIT")).create(BitazzaService::class.java) }

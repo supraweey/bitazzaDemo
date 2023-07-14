@@ -4,11 +4,10 @@ import android.os.Build
 import org.bouncycastle.util.encoders.Base64
 import javax.crypto.Cipher
 import javax.crypto.SecretKey
-import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 
-class AppEncrypter: AppEncryptable {
+class AppEncrypter : AppEncryptable {
     override fun encryptAES(plainData: String, encryptionKey: SecretKey?): String {
         val cipher = getAESCipher(Cipher.ENCRYPT_MODE, encryptionKey)
         val encryptedBytes = cipher.doFinal(plainData.toByteArray())

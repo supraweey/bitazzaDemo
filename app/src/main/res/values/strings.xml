@@ -5,15 +5,23 @@
     <string name="label_button_login">Login</string>
     <string name="label_button_logout">Logout</string>
 
+    <!--  MAIN  -->
     <string name="menu_market">Market</string>
     <string name="menu_wallet">Wallet</string>
     <string name="menu_news">News</string>
     <string name="menu_activity">Activity</string>
     <string name="menu_setting">Settings</string>
 
+    <!--  MARKET  -->
     <string name="market_title_volume">Volume</string>
     <string name="market_title_price">Price</string>
     <string name="market_title_change">Change</string>
 
     <string name="market_mock_value_change">+0.85%</string>
+
+    <!--  WALLET  -->
+    <string name="wallet_title_fiat">Fiat</string>
+    <string name="wallet_title_crypto">Crypto</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

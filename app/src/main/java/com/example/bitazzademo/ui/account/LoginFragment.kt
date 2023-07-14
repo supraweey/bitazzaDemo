@@ -24,7 +24,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
     }
@@ -57,7 +57,7 @@ class LoginFragment : Fragment() {
         viewModel.isError.observe(requireActivity()) {
             Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
         }
-        viewModel.loading.observe(requireActivity()){
+        viewModel.loading.observe(requireActivity()) {
             binding.progressBar.isVisible = it
         }
     }

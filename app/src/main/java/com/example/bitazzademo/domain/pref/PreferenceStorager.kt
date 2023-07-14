@@ -16,7 +16,8 @@ class PreferenceStorager constructor(
         put(key, value)
     }
 
-    override fun getInt(key: String, defaultValue: Int): Int = get(key)?.toIntOrNull() ?: defaultValue
+    override fun getInt(key: String, defaultValue: Int): Int =
+        get(key)?.toIntOrNull() ?: defaultValue
 
     override fun putInt(key: String, value: Int) {
         put(key, value)

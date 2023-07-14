@@ -20,9 +20,11 @@
         <item name="windowActionBarOverlay">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
 
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/colorBlack4C4C4C</item>
     </style>
 
     <style name="Base.Widget.AppCompat.ProgressBar.Gray">

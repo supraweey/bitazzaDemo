@@ -69,12 +69,15 @@ class MarketFragment : Fragment() {
         }
     }
 
-    private fun observe(){
+    private fun observe() {
         viewModel.productItemList.observe(this) {
             productAdapter.updateItem(it)
         }
-        viewModel.loading.observe(requireActivity()){
+        viewModel.loading.observe(requireActivity()) {
             binding.progressBar.isVisible = it
+        }
+        viewModel.isError.observe(requireActivity()) {
+            Timber.d("Product error.")
         }
     }
 

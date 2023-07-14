@@ -1,13 +1,9 @@
-package com.android.supraweey.tmdbclient.network
+package com.example.bitazzademo.network
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
-import androidx.annotation.RequiresApi
-import com.example.bitazzademo.network.Networkable
 
-class NetworkUtils(private val connectivityManager: ConnectivityManager): Networkable {
-    @RequiresApi(Build.VERSION_CODES.M)
+class NetworkUtils(private val connectivityManager: ConnectivityManager) : Networkable {
     override fun isInternetConnection(): Boolean {
         val network = connectivityManager.activeNetwork ?: return false
         val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
