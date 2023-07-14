@@ -14,4 +14,6 @@
     <string name="market_title_volume">Volume</string>
     <string name="market_title_price">Price</string>
     <string name="market_title_change">Change</string>
+
+    <string name="market_mock_value_change">+0.85%</string>
 </resources>

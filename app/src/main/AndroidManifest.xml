@@ -33,7 +33,8 @@
         </activity>
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar.TransparentStatusBar" />
     </application>
 
 </manifest>

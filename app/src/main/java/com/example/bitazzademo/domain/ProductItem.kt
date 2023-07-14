@@ -18,7 +18,8 @@ data class ProductItem(
     val depositEnabled: Boolean?,
     val withdrawEnabled: Boolean?,
     val noFees: Boolean?,
-    val isDisabled: Boolean?
+    val isDisabled: Boolean?,
+    val marginEnabled: Boolean? = null
 ) : Parcelable
 
 fun ProductItem.toProductItemViewType(): MarketListViewType.Item {
@@ -34,6 +35,7 @@ fun ProductItem.toProductItemViewType(): MarketListViewType.Item {
         depositEnabled = depositEnabled,
         withdrawEnabled = withdrawEnabled,
         noFees = noFees,
-        isDisabled = isDisabled
+        isDisabled = isDisabled,
+        marginEnabled = marginEnabled
     )
 }

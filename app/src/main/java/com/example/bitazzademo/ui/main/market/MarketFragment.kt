@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.FragmentMarketBinding
+import com.example.bitazzademo.domain.OMS_ID
 import com.example.bitazzademo.domain.USER_KEY_TOKEN
 import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.example.bitazzademo.ui.main.MainActivity
@@ -40,7 +41,7 @@ class MarketFragment : Fragment() {
                 title = getString(R.string.app_name),
                 labelEnd = getString(R.string.label_button_logout)
             ) {
-                handleLoginClick()
+                handleLogoutClick()
             }
         }
         setUpRecyclerView()
@@ -52,9 +53,10 @@ class MarketFragment : Fragment() {
         observe()
     }
 
-    private fun handleLoginClick() {
+    private fun handleLogoutClick() {
         if (prefs.getString(USER_KEY_TOKEN, "").isNotEmpty()) {
             prefs.delete(USER_KEY_TOKEN)
+            prefs.delete(OMS_ID)
         } else {
             Timber.d("User doesn't login.")
         }
@@ -70,6 +72,9 @@ class MarketFragment : Fragment() {
     private fun observe(){
         viewModel.productItemList.observe(this) {
             productAdapter.updateItem(it)
+        }
+        viewModel.loading.observe(requireActivity()){
+            binding.progressBar.isVisible = it
         }
     }
 

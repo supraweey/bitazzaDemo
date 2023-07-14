@@ -10,5 +10,5 @@ const val SOCKET_TIMEOUT = "CA111"
 const val TIMEOUT = "CA110"
 
 const val USER_KEY_TOKEN = "USER_KEY_TOKEN"
-const val OMSID = "OMSId"
+const val OMS_ID = "OMS_ID"
 const val SHARED_PREFERENCES_NAME = "$PACKAGE_NAME.SharedPreferences"

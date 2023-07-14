@@ -22,6 +22,7 @@ sealed class MarketListViewType {
         val depositEnabled: Boolean? = null,
         val withdrawEnabled: Boolean? = null,
         val noFees: Boolean? = null,
-        val isDisabled: Boolean? = null
+        val isDisabled: Boolean? = null,
+        val marginEnabled: Boolean? = null
     ): MarketListViewType()
 }

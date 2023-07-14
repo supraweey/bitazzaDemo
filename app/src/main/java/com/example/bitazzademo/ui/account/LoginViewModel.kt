@@ -8,6 +8,7 @@ import com.example.bitazzademo.domain.LoginUseCase
 import com.hadilq.liveevent.LiveEvent
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import org.bouncycastle.util.encoders.Base64
@@ -21,12 +22,16 @@ class LoginViewModel(private val loginUseCase: LoginUseCase): ViewModel() {
     val isError: LiveData<Boolean>
         get() = _isError
 
+    private val _loading by lazy { LiveEvent<Boolean>() }
+    val loading: LiveData<Boolean> by lazy { _loading }
+
     fun executeLogin(userName: String, password: String){
         val token = "Basic " + String(Base64.encode("$userName:$password".toByteArray()))
         viewModelScope.launch {
             loginUseCase.execute(token)
-                .onStart {  }
+                .onStart { showLoading() }
                 .catch { _isError.value = true }
+                .onCompletion { hideLoading() }
                 .collect{
                     onGetToken(it)
                 }
@@ -36,5 +41,13 @@ class LoginViewModel(private val loginUseCase: LoginUseCase): ViewModel() {
     private fun onGetToken(item: AuthenticationItem){
         _userData.value = item
 
+    }
+
+    private fun showLoading() {
+        _loading.value = true
+    }
+
+    private fun hideLoading() {
+        _loading.value = false
     }
 }

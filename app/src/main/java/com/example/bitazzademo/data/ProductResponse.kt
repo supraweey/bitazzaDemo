@@ -16,7 +16,8 @@ data class GetProductResponse(
     @SerializedName("DepositEnabled") val depositEnabled: Boolean?,
     @SerializedName("WithdrawEnabled") val withdrawEnabled: Boolean?,
     @SerializedName("NoFees") val noFees: Boolean?,
-    @SerializedName("IsDisabled") val isDisabled: Boolean?
+    @SerializedName("IsDisabled") val isDisabled: Boolean?,
+    @SerializedName("MarginEnabled") val marginEnabled: Boolean?
 )
 
 fun GetProductResponse.mapToDomain(): ProductItem =
@@ -33,4 +34,5 @@ fun GetProductResponse.mapToDomain(): ProductItem =
         withdrawEnabled = withdrawEnabled,
         noFees = noFees,
         isDisabled = isDisabled,
+        marginEnabled = marginEnabled
     )

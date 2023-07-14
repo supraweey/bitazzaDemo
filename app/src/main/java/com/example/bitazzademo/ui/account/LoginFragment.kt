@@ -1,20 +1,17 @@
 package com.example.bitazzademo.ui.account
 
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
-import android.text.util.Linkify
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.bitazzademo.databinding.FragmentLoginBinding
-import com.example.bitazzademo.domain.OMSID
+import com.example.bitazzademo.domain.OMS_ID
 import com.example.bitazzademo.domain.USER_KEY_TOKEN
 import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.example.bitazzademo.ui.main.MainActivity
-import org.bouncycastle.util.Integers
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -54,11 +51,14 @@ class LoginFragment : Fragment() {
     private fun onObserve() {
         viewModel.userData.observe(requireActivity()) {
             prefs.putString(USER_KEY_TOKEN, it.token ?: "")
-            prefs.putInt(OMSID, it.oMSId ?: 0)
+            prefs.putInt(OMS_ID, it.oMSId ?: 1)
             MainActivity.startActivity(requireContext())
         }
         viewModel.isError.observe(requireActivity()) {
             Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
+        }
+        viewModel.loading.observe(requireActivity()){
+            binding.progressBar.isVisible = it
         }
     }
 }
