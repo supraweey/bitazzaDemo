@@ -12,8 +12,9 @@ import com.example.bitazzademo.databinding.FragmentMarketBinding
 import com.example.bitazzademo.domain.OMS_ID
 import com.example.bitazzademo.domain.USER_KEY_TOKEN
 import com.example.bitazzademo.domain.pref.PreferenceStoragable
+import com.example.bitazzademo.ui.account.AccountActivity
 import com.example.bitazzademo.ui.main.MainActivity
-import com.example.bitazzademo.ui.main.market.adapter.MarketAdapter
+import com.example.bitazzademo.ui.main.market.adapter.ProductAdapter
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -23,7 +24,7 @@ class MarketFragment : Fragment() {
     lateinit var binding: FragmentMarketBinding
     private val viewModel by viewModel<MarketViewModel>()
 
-    private var productAdapter: MarketAdapter = MarketAdapter()
+    private var productAdapter: ProductAdapter = ProductAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,15 +36,6 @@ class MarketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as MainActivity).apply {
-            setCustomActionBar(
-                requireContext(),
-                title = getString(R.string.app_name),
-                labelEnd = getString(R.string.label_button_logout)
-            ) {
-                handleLogoutClick()
-            }
-        }
         setUpRecyclerView()
         viewModel.executeGetProduct()
     }
@@ -53,10 +45,16 @@ class MarketFragment : Fragment() {
         observe()
     }
 
+    override fun onResume() {
+        super.onResume()
+        handleActionBar()
+    }
+
     private fun handleLogoutClick() {
         if (prefs.getString(USER_KEY_TOKEN, "").isNotEmpty()) {
             prefs.delete(USER_KEY_TOKEN)
             prefs.delete(OMS_ID)
+            AccountActivity.startActivity(requireContext())
         } else {
             Timber.d("User doesn't login.")
         }
@@ -66,6 +64,18 @@ class MarketFragment : Fragment() {
         binding.rvProductList.apply {
             adapter = productAdapter
             layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    private fun handleActionBar(){
+        (requireActivity() as MainActivity).apply {
+            setCustomActionBar(
+                requireContext(),
+                title = getString(R.string.app_name),
+                labelEnd = getString(R.string.label_button_logout)
+            ) {
+                handleLogoutClick()
+            }
         }
     }
 

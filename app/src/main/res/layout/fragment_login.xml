@@ -22,24 +22,40 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="@dimen/space_60dp"
+        android:layout_height="@dimen/space_60dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/tvEmail"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_bitazza" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEmail"
         style="@style/KanitTextViewStyleGray"
         android:layout_width="@dimen/space_00dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="@dimen/space_20dp"
         android:text="@string/label_title_email"
         android:textSize="@dimen/text_size_18sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtEmail"
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtEmail"
+        style="@style/KanitTextViewStyleWhite"
         android:layout_width="@dimen/space_00dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorGrayCCCCCC"
         android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPassword"
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
@@ -52,16 +68,20 @@
         android:layout_marginTop="@dimen/space_18dp"
         android:text="@string/label_title_password"
         android:textSize="@dimen/text_size_18sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtPassword"
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtPassword"
+        style="@style/KanitTextViewStyleWhite"
         android:layout_width="@dimen/space_00dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorGrayCCCCCC"
+        android:inputType="textPassword"
         android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
@@ -77,6 +97,7 @@
         android:text="@string/label_button_login"
         android:textSize="@dimen/text_size_20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/edtPassword" />

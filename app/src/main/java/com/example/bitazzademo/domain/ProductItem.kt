@@ -1,7 +1,7 @@
 package com.example.bitazzademo.domain
 
 import android.os.Parcelable
-import com.example.bitazzademo.ui.main.market.holder.MarketListViewType
+import com.example.bitazzademo.ui.main.market.holder.ProductListViewType
 import kotlinx.android.parcel.Parcelize
 import java.math.BigDecimal
 
@@ -22,8 +22,8 @@ data class ProductItem(
     val marginEnabled: Boolean? = null
 ) : Parcelable
 
-fun ProductItem.toProductItemViewType(): MarketListViewType.Item {
-    return MarketListViewType.Item(
+fun ProductItem.toProductItemViewType(): ProductListViewType.Item {
+    return ProductListViewType.Item(
         omsId = omsId,
         productId = productId,
         product = product,

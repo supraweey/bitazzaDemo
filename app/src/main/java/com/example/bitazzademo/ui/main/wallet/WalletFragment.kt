@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.FragmentWalletBinding
+import com.example.bitazzademo.ui.main.MainActivity
 import com.example.bitazzademo.ui.main.wallet.pager.WalletPagerAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -37,6 +38,7 @@ class WalletFragment : Fragment() {
     }
 
     private fun initView() {
+        (requireActivity() as MainActivity).hideActionBar()
         binding.btnTapFiat.selectedTabFiat()
         binding.btnTapFiat.run {
             setOnClickListener {

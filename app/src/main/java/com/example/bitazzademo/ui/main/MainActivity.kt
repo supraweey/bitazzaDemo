@@ -68,7 +68,14 @@ class MainActivity : AppCompatActivity() {
         val colorDrawable = ColorDrawable(ContextCompat.getColor(context, R.color.colorBlack191919))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
-        supportActionBar?.apply { setDisplayHomeAsUpEnabled(false) }
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
+            show()
+        }
+    }
+
+    fun hideActionBar() {
+        supportActionBar?.hide()
     }
 
     companion object {

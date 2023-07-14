@@ -9,7 +9,7 @@ import com.example.bitazzademo.domain.OMS_ID
 import com.example.bitazzademo.domain.ProductItem
 import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.example.bitazzademo.domain.toProductItemViewType
-import com.example.bitazzademo.ui.main.market.holder.MarketListViewType
+import com.example.bitazzademo.ui.main.market.holder.ProductListViewType
 import com.hadilq.liveevent.LiveEvent
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
@@ -20,8 +20,8 @@ class MarketViewModel(
     private val getProductListUseCase: GetProductListUseCase,
     private val prefs: PreferenceStoragable
 ) : ViewModel() {
-    private val _productItemList = LiveEvent<List<MarketListViewType>>()
-    val productItemList: LiveData<List<MarketListViewType>>
+    private val _productItemList = LiveEvent<List<ProductListViewType>>()
+    val productItemList: LiveData<List<ProductListViewType>>
         get() = _productItemList
 
     private val _isError = LiveEvent<Boolean>()
@@ -45,9 +45,9 @@ class MarketViewModel(
     }
 
     private fun onGetProduct(productItems: List<ProductItem>) {
-        val viewTypeList = mutableListOf<MarketListViewType>()
+        val viewTypeList = mutableListOf<ProductListViewType>()
         viewTypeList.add(
-            MarketListViewType.Header(
+            ProductListViewType.Header(
                 R.string.market_title_volume,
                 R.string.market_title_price,
                 R.string.market_title_change

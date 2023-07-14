@@ -3,12 +3,12 @@ package com.example.bitazzademo.ui.main.market.holder
 import androidx.annotation.StringRes
 import java.math.BigDecimal
 
-sealed class MarketListViewType {
+sealed class ProductListViewType {
     data class Header(
         @StringRes val volume: Int,
         @StringRes val price: Int,
         @StringRes val change: Int
-    ) : MarketListViewType()
+    ) : ProductListViewType()
 
     data class Item(
         val omsId: Int? = null,
@@ -24,5 +24,5 @@ sealed class MarketListViewType {
         val noFees: Boolean? = null,
         val isDisabled: Boolean? = null,
         val marginEnabled: Boolean? = null
-    ) : MarketListViewType()
+    ) : ProductListViewType()
 }

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bitazzademo.databinding.ItemHeaderMarketBinding
 import com.example.bitazzademo.databinding.ItemMarketBinding
-import com.example.bitazzademo.ui.main.market.holder.MarketHeaderViewHolder
-import com.example.bitazzademo.ui.main.market.holder.MarketItemViewHolder
-import com.example.bitazzademo.ui.main.market.holder.MarketListViewType
+import com.example.bitazzademo.ui.main.market.holder.ProductHeaderViewHolder
+import com.example.bitazzademo.ui.main.market.holder.ProductItemViewHolder
+import com.example.bitazzademo.ui.main.market.holder.ProductListViewType
 
-class MarketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var productList = mutableListOf<MarketListViewType>()
+class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var productList = mutableListOf<ProductListViewType>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holder: RecyclerView.ViewHolder = when (viewType) {
@@ -18,14 +18,14 @@ class MarketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val view = ItemMarketBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
-                MarketItemViewHolder(view)
+                ProductItemViewHolder(view)
             }
 
             else -> {
                 val view = ItemHeaderMarketBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
-                MarketHeaderViewHolder(view)
+                ProductHeaderViewHolder(view)
             }
         }
         return holder
@@ -35,22 +35,22 @@ class MarketAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is MarketItemViewHolder -> {
+            is ProductItemViewHolder -> {
                 holder.bind(productList[position])
             }
 
-            is MarketHeaderViewHolder -> {
+            is ProductHeaderViewHolder -> {
                 holder.bind(productList[position])
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int = when (productList[position]) {
-        is MarketListViewType.Item -> VIEW_TYPE_ITEM
-        is MarketListViewType.Header -> VIEW_TYPE_HEADER
+        is ProductListViewType.Item -> VIEW_TYPE_ITEM
+        is ProductListViewType.Header -> VIEW_TYPE_HEADER
     }
 
-    fun updateItem(products: List<MarketListViewType>) = apply {
+    fun updateItem(products: List<ProductListViewType>) = apply {
         productList = products.toMutableList()
         notifyDataSetChanged()
     }

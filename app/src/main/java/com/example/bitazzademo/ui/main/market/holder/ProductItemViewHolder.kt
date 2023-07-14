@@ -5,11 +5,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.ItemMarketBinding
 
-class MarketItemViewHolder(var view: ItemMarketBinding) : RecyclerView.ViewHolder(view.root) {
+class ProductItemViewHolder(var view: ItemMarketBinding) : RecyclerView.ViewHolder(view.root) {
 
-    fun bind(item: MarketListViewType) {
+    fun bind(item: ProductListViewType) {
         view.apply {
-            if (item is MarketListViewType.Item) {
+            if (item is ProductListViewType.Item) {
                 tvCryptoName.text = item.product
                 tvVolumePrice.text = item.tickSize.toString()
                 tvPrice1.text = item.decimalPlaces.toString()
