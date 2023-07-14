@@ -32,8 +32,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            edtEmail.setText("suprawee.yimnium@gmail.com")
-            edtPassword.setText("superFon@1")
+            edtEmail.setText(String())
+            edtPassword.setText(String())
             btnLogin.setOnClickListener {
                 val username = edtEmail.text.toString()
                 val password = edtPassword.text.toString()
