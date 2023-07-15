@@ -5,11 +5,7 @@
                     
 ### History
                     
-Branch  | Version | Release Date
-------------- | ------------- | -------------
-develop  | 1.0 | 2023-07-14
+Branch  | Version 
+------------- | -------------
+develop  | 1.0 
 
-
-### Diagram
-
-Enter: ![Flow](https://drive.google.com/file/d/1fqP4a8msvqtE4ywi0faMtoGayBKBnSCj/view?usp=drive_link "Flow")
