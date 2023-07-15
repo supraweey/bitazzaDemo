@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bitazzademo.domain.AuthenticationItem
 import com.example.bitazzademo.domain.LoginUseCase
+import com.example.bitazzademo.domain.OMS_ID
+import com.example.bitazzademo.domain.USER_KEY_TOKEN
+import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.hadilq.liveevent.LiveEvent
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
@@ -12,7 +15,10 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import org.bouncycastle.util.encoders.Base64
 
-class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
+class LoginViewModel(
+    private val prefs: PreferenceStoragable,
+    private val loginUseCase: LoginUseCase
+) : ViewModel() {
     private val _userData = LiveEvent<AuthenticationItem>()
     val userData: LiveData<AuthenticationItem>
         get() = _userData
@@ -39,7 +45,6 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
 
     private fun onGetToken(item: AuthenticationItem) {
         _userData.value = item
-
     }
 
     private fun showLoading() {
@@ -48,5 +53,10 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
 
     private fun hideLoading() {
         _loading.value = false
+    }
+
+    fun handleLoginData(authenticationItem: AuthenticationItem) {
+        prefs.putString(USER_KEY_TOKEN, authenticationItem.token ?: "")
+        prefs.putInt(OMS_ID, authenticationItem.oMSId ?: 1)
     }
 }

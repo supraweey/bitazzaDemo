@@ -22,6 +22,8 @@
     <!--  WALLET  -->
     <string name="wallet_title_fiat">Fiat</string>
     <string name="wallet_title_crypto">Crypto</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  Toast message  -->
+    <string name="message_login_error">Login error.</string>
+    <string name="message_logout_error">Logout error.</string>
 </resources>

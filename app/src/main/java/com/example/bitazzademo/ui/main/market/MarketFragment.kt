@@ -4,26 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.FragmentMarketBinding
-import com.example.bitazzademo.domain.OMS_ID
-import com.example.bitazzademo.domain.USER_KEY_TOKEN
-import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.example.bitazzademo.ui.account.AccountActivity
 import com.example.bitazzademo.ui.main.MainActivity
 import com.example.bitazzademo.ui.main.market.adapter.ProductAdapter
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MarketFragment : Fragment() {
-    private val prefs: PreferenceStoragable by inject()
-    lateinit var binding: FragmentMarketBinding
+    private lateinit var binding: FragmentMarketBinding
     private val viewModel by viewModel<MarketViewModel>()
-
     private var productAdapter: ProductAdapter = ProductAdapter()
 
     override fun onCreateView(
@@ -42,22 +36,12 @@ class MarketFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        observe()
+        onObserve()
     }
 
     override fun onResume() {
         super.onResume()
         handleActionBar()
-    }
-
-    private fun handleLogoutClick() {
-        if (prefs.getString(USER_KEY_TOKEN, "").isNotEmpty()) {
-            prefs.delete(USER_KEY_TOKEN)
-            prefs.delete(OMS_ID)
-            AccountActivity.startActivity(requireContext())
-        } else {
-            Timber.d("User doesn't login.")
-        }
     }
 
     private fun setUpRecyclerView() {
@@ -67,7 +51,19 @@ class MarketFragment : Fragment() {
         }
     }
 
-    private fun handleActionBar(){
+    private fun onObserve() {
+        viewModel.productItemList.observe(this) {
+            productAdapter.updateItem(it)
+        }
+        viewModel.loading.observe(requireActivity()) {
+            binding.progressBar.isVisible = it
+        }
+        viewModel.isError.observe(requireActivity()) {
+            Toast.makeText(requireContext(), "Product error.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleActionBar() {
         (requireActivity() as MainActivity).apply {
             setCustomActionBar(
                 requireContext(),
@@ -79,16 +75,21 @@ class MarketFragment : Fragment() {
         }
     }
 
-    private fun observe() {
-        viewModel.productItemList.observe(this) {
-            productAdapter.updateItem(it)
-        }
-        viewModel.loading.observe(requireActivity()) {
-            binding.progressBar.isVisible = it
-        }
-        viewModel.isError.observe(requireActivity()) {
-            Timber.d("Product error.")
+    private fun handleLogoutClick() {
+        viewModel.apply {
+            handleLogoutData(
+                logout = {
+                    clearUserData()
+                    AccountActivity.startActivity(requireContext())
+                },
+                error = {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.message_logout_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
         }
     }
-
 }

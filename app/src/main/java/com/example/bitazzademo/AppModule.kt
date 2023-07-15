@@ -54,6 +54,6 @@ val appModule = module {
     factory { LoginUseCase(get()) }
     factory { GetProductListUseCase(get()) }
 
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get()) }
     viewModel { MarketViewModel(get(), get()) }
 }

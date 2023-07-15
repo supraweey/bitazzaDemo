@@ -7,6 +7,7 @@ import com.example.bitazzademo.R
 import com.example.bitazzademo.domain.GetProductListUseCase
 import com.example.bitazzademo.domain.OMS_ID
 import com.example.bitazzademo.domain.ProductItem
+import com.example.bitazzademo.domain.USER_KEY_TOKEN
 import com.example.bitazzademo.domain.pref.PreferenceStoragable
 import com.example.bitazzademo.domain.toProductItemViewType
 import com.example.bitazzademo.ui.main.market.holder.ProductListViewType
@@ -17,8 +18,8 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class MarketViewModel(
-    private val getProductListUseCase: GetProductListUseCase,
-    private val prefs: PreferenceStoragable
+    private val prefs: PreferenceStoragable,
+    private val getProductListUseCase: GetProductListUseCase
 ) : ViewModel() {
     private val _productItemList = LiveEvent<List<ProductListViewType>>()
     val productItemList: LiveData<List<ProductListViewType>>
@@ -65,5 +66,19 @@ class MarketViewModel(
 
     private fun hideLoading() {
         _loading.value = false
+    }
+
+    fun handleLogoutData(logout: () -> Unit, error: () -> Unit) {
+        if (prefs.getString(USER_KEY_TOKEN, "").isNotEmpty()) {
+            logout.invoke()
+        }
+        else {
+            error.invoke()
+        }
+    }
+
+    fun clearUserData(){
+        prefs.delete(USER_KEY_TOKEN)
+        prefs.delete(OMS_ID)
     }
 }
