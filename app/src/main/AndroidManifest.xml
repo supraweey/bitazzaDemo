@@ -20,6 +20,7 @@
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
+            android:noHistory="true"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +31,7 @@
         <activity
             android:name=".ui.account.AccountActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar.TransparentStatusBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar.TransparentStatusBar" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false"

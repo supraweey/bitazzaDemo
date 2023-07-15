@@ -43,6 +43,12 @@
         <item name="android:fontFamily">@font/font_kanit</item>
     </style>
 
+    <style name="KanitTextViewStyleGreen" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorGreen2FBC86</item>
+        <item name="android:fontFamily">@font/font_kanit</item>
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+    </style>
+
     <style name="AppTheme.ProgressBar">
         <item name="colorAccent">@color/colorGreen2FBC86</item>
     </style>

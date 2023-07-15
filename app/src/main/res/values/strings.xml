@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">Bitazza</string>
+
+    <!--  ACCOUNT  -->
     <string name="label_title_email">Email</string>
     <string name="label_title_password">Password</string>
     <string name="label_button_login">Login</string>
     <string name="label_button_logout">Logout</string>
+    <string name="label_button_sign_up">Sign up</string>
+    <string name="label_button_forgot_password">Forgot Password?</string>
 
     <!--  MAIN  -->
     <string name="menu_market">Market</string>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.bitazzademo.R
 import com.example.bitazzademo.databinding.FragmentLoginBinding
 import com.example.bitazzademo.ui.main.MainActivity
@@ -30,11 +31,23 @@ class LoginFragment : Fragment() {
         binding.apply {
             edtEmail.setText(String())
             edtPassword.setText(String())
+            handleOnClickListener()
+        }
+    }
+
+    private fun handleOnClickListener() {
+        binding.apply {
             btnLogin.setOnClickListener {
                 viewModel.executeLogin(
                     userName = edtEmail.text.toString(),
                     password = edtPassword.text.toString()
                 )
+            }
+            tvSignUp.setOnClickListener { v ->
+                v.findNavController().navigate(R.id.actionSignUp)
+            }
+            tvForgetPassword.setOnClickListener { v ->
+                v.findNavController().navigate(R.id.actionForgotPassword)
             }
         }
     }

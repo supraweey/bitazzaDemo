@@ -31,15 +31,20 @@ class LoginViewModel(
     val loading: LiveData<Boolean> by lazy { _loading }
 
     fun executeLogin(userName: String, password: String) {
-        val token = "Basic " + String(Base64.encode("$userName:$password".toByteArray()))
-        viewModelScope.launch {
-            loginUseCase.execute(token)
-                .onStart { showLoading() }
-                .catch { _isError.value = true }
-                .onCompletion { hideLoading() }
-                .collect {
-                    onGetToken(it)
-                }
+        if(userName.isNotEmpty() && password.isNotEmpty()){
+            val token = "Basic " + String(Base64.encode("$userName:$password".toByteArray()))
+            viewModelScope.launch {
+                loginUseCase.execute(token)
+                    .onStart { showLoading() }
+                    .catch { _isError.value = true }
+                    .onCompletion { hideLoading() }
+                    .collect {
+                        onGetToken(it)
+                    }
+            }
+        }
+        else {
+            _isError.value = true
         }
     }
 

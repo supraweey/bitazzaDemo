@@ -19,6 +19,8 @@ class AccountActivity : AppCompatActivity() {
     companion object {
         fun startActivity(context: Context) {
             val intent = Intent(context, AccountActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             context.startActivity(intent)
         }
     }

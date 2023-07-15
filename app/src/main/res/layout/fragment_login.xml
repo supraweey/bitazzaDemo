@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlack191919"
-    android:orientation="vertical"
-    android:padding="@dimen/space_20dp">
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/startGuideline"
@@ -24,8 +23,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLogo"
-        android:layout_width="@dimen/space_60dp"
-        android:layout_height="@dimen/space_60dp"
+        android:layout_width="@dimen/space_80dp"
+        android:layout_height="@dimen/space_80dp"
         android:adjustViewBounds="true"
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/tvEmail"
@@ -101,6 +100,31 @@
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSignUp"
+        style="@style/KanitTextViewStyleGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/space_14dp"
+        android:paddingStart="@dimen/space_14dp"
+        android:text="@string/label_button_sign_up"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/endGuideline" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvForgetPassword"
+        style="@style/KanitTextViewStyleGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/space_14dp"
+        android:paddingEnd="@dimen/space_14dp"
+        android:text="@string/label_button_forgot_password"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
